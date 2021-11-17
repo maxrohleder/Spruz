@@ -14,3 +14,17 @@ authentication.
 A nodejs application running an express server will be made accessible through a nginx-http server.
 A primitive mysql database will store user login information and the items on the todo list.
 The frontend html code will be hosted statically by nginx.
+
+## Useful commands
+
+### develop, test and build
+
+`docker run -dp <host-port>:<container-port> --name <instance-name> <container-name>`
+
+`docker build -t <image-name>:<tag> <folder>`
+
+### publish
+
+`docker tag local-image:tagname new-repo:tagname`
+
+`docker push new-repo:tagname`

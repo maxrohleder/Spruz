@@ -1,0 +1,17 @@
+.header{
+    width: 100%;
+    text-align: center;
+}
+
+body{
+    background-color:lightskyblue;
+    box-sizing: content-box;
+    display: flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 0 0 0;
+    align-content: center;
+}

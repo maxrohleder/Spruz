@@ -3,6 +3,7 @@ name: DockerHub CI
 on:
   push:
     branches: [ main ]
+    tags: [ 'latest' ]
   pull_request:
     branches: [ main ]
       

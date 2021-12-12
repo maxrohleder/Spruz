@@ -12,7 +12,8 @@ app.get('/', (req, res) => {
 })
 
 app.post('/update', (req, res) => {
-    console.log(req);
+    const msg = JSON.parse(req.body.read);
+    console.log(msg);
     res.status(200);
 })
 

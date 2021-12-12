@@ -1,5 +1,5 @@
 const express = require('express');
-const JSON = require('json');
+const shell = require('shelljs');
 
 const app = express();
 const port = 3000;
@@ -12,9 +12,12 @@ app.get('/', (req, res) => {
 })
 
 app.post('/update', (req, res) => {
-    const msg = JSON.parse(req.body.read);
-    console.log(msg);
-    res.status(200);
+
+    shell.exec('./restart_docker_container.sh')
+    console.log("restarted docker container.")
+
+    // send response
+    res.status(200).send("accepted.");
 })
 
 app.listen(port, () => {

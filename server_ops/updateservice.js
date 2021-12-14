@@ -17,7 +17,8 @@ app.post('/update', (req, res) => {
     console.log("restarted docker container.")
 
     // send response
-    res.status(200).send("accepted.");
+    res.status(200).send('OK');
+    console.log("sent response!")
 })
 
 app.listen(port, () => {

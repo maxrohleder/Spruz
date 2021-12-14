@@ -25,3 +25,13 @@ jobs:
         with:
           push: true
           tags: maxrohleder/maxserver:latest
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy to server
+      uses: fjogeleit/http-request-action@master
+      with:
+        url: ${{ secrets.UPDATE_TRIGGER_URL }}
+        method: 'POST'
+        username: ${{ secrets.STRATO_USER }}
+        password: ${{ secrets.STRATO_PWD }}

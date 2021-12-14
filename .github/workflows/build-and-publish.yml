@@ -26,6 +26,7 @@ jobs:
           push: true
           tags: maxrohleder/maxserver:latest
   deployment:
+    needs: docker
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to server

@@ -1,31 +1,52 @@
+/* https://www.1001fonts.com/old-german-fonts.html */
 @font-face {
     font-family: Breitkopf;
     src: url(BreitkopfFraktur.ttf);
 }
 
+/* For mobile phones */
 .header{
-    width: 100%;
     text-align: center;
+    padding: 1em 0 1em 0;
     font-family: Breitkopf;
-    background-color: whitesmoke;
     color: black;
-    margin-bottom: 10vh;
     font-size: 2em;
 }
 
+.coll{
+    width: 100%;
+}
+
 .content{
-    padding-bottom: 40vh;
+    height: 100%;
+    padding-top: 2em;
+    color: whitesmoke;
+    text-align: center;
+    background-color:darkslategray;
+}
+
+.footer {
+    text-align: center;
+    color: whitesmoke;
+    border-top: 1px solid gray;
+    padding-top: 3px;
+    background-color:darkslategray;
 }
 
 body{
-    background-color:darkslategray;
     box-sizing: content-box;
+    background-color: whitesmoke;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     width: 100vw;
     height: 100vh;
     margin: 0 0 0 0;
-    color: whitesmoke;
-    text-align: center;
+}
+
+/* For desktop: */
+@media only screen and (min-width: 600px) {
+    .coll {width: 50%;}
+    .content {border-radius: 5px; box-shadow: 5px -5px 5px lightgray;}
 }

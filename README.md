@@ -1,21 +1,75 @@
-# DockerPlayground
-This repo will contain a containerized web-application including a basic database-server-frontend setup.
+# Traditionskneipe Spruz
 
-Keywords: Containers, CI-CD, JWT-authentication
 
-## Purpose of the website
-This website will serve both as my public homepage and will also have a private part requiring a login.
+## API definitions
 
-After authentication, the user can interact with a todo-list that is written to a db on the server. 
-The contents of this list is hidden for non-authenticated users. Json-Web-Tokens are used as means of
-authentication.
+Codes: {
+    0: success
+    1: internal error
+    2: already booked (some one else was faster)
+}
 
-## Server-side application
-A nodejs application running an express server will be made accessible through a nginx-http server.
-A primitive mysql database will store user login information and the items on the todo list.
-The frontend html code will be hosted statically by nginx.
+Login / Auth:
 
-## Useful commands
+// used to create a new user and obtain a fresh jwt
+> HTTP-POST: /register
+> <br>JSON-PAYLOAD: {
+> <br> > > > user: string,
+> <br> > > > pwhash: string,
+> }
+> <br>ANSWER: {
+> <br> > > > token: jwt-token,
+> } @200;
+
+// used to login a user and obtain a fresh jwt token
+> HTTP-POST: /login
+> <br>JSON-PAYLOAD: {
+> <br> > > > user: string,
+> <br> > > > pwhash: sha-512,
+> }
+> <br>ANSWER: {
+> <br> > > > token: jwt-token,
+> } @200;
+
+Protected Routes:
+
+// used to obtain all reservation data for a given day
+// used to display reservations for that evening
+// returns all reservations for the day after the specified time (encoded in one unix-time)
+> HTTP-GET: /reservations
+> <br>JSON-PAYLOAD: {
+> <br> > > > date: int, // unix-time convention
+> <br> > > > token: jwt-token,
+> }
+> <br>ANSWER: {
+> <br> > > > reservations: list of reservations sorted by start-time: {user: string, start-time: int},
+> } @200;
+
+Unprotected Routes:
+
+// used to show available slots to customer
+// returns all reservations for the day after the specified time (encoded in one unix-time)
+> HTTP-GET: /reservations
+> <br>JSON-PAYLOAD: {
+> <br> > > > date: int, // unix-time convention
+> }
+> <br>ANSWER: {
+> <br> > > > reservations: list of reservations sorted by start-time: {user: string, start-time: int},
+> } @200;
+
+// used to reserve a specified time and username
+> HTTP-POST: /reserve
+> <br>JSON-PAYLOAD: {
+> <br> > > > username: string,
+> <br> > > > starttime: int, // unix-time convention
+> }
+> <br>ANSWER: {
+> <br> > > > code: int
+> } @200;
+
+
+
+## Docker commands
 
 ### develop, test and build
 

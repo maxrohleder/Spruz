@@ -14,7 +14,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Willkommen im <a href="https://spruz.de">Spruz</a>
+          <a href="https://spruz.de" className={styles.spruzFont}>Spruz</a>
         </h1>
       </main>
 

@@ -15,3 +15,8 @@
 .footer {
   display: flex;
 }
+
+.spruzFont {
+  font-family: Breitkopf;
+  font-size: 5em;
+}

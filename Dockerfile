@@ -1,2 +1,8 @@
+FROM node:16 as node
+COPY /frontend/spruz .
+RUN pwd
+RUN npm i
+RUN npm run build
+
 FROM nginx
-COPY ./frontend/* /usr/share/nginx/html
+COPY --from=node /dist/spruz/* /usr/share/nginx/html

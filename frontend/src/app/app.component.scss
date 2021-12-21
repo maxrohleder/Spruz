@@ -1,0 +1,56 @@
+/* https://www.1001fonts.com/old-german-fonts.html */
+@font-face {
+    font-family: Breitkopf;
+    src: url(../assets/BreitkopfFraktur.ttf);
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-sizing: content-box;
+    height: 150vh;
+    width: 100vw;
+}
+
+.title {
+    text-align: center;
+    padding: 1em 0 1em 0;
+    font-family: Breitkopf;
+    color: black;
+    font-size: 5em;
+}
+
+.welcome {
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 1em;
+    font-family: Roboto;
+    font-size: 1em;
+    color: whitesmoke;
+    background-color: darkslategrey;
+    width: 100%;
+    height: 100%;
+}
+
+.impressum {
+    border-top: 1px solid lightgray;
+    font-family: Roboto;
+    color: lightgray;
+    width: 100%;
+    padding: 0.2em;
+}
+
+/* For desktop: */
+@media only screen and (min-width: 840px) {
+    .welcome {
+        width: 50%;
+    }
+    .welcome {
+        border-radius: 5px 5px 0 0;
+        box-shadow: 5px -5px 5px lightgray;
+    }
+}

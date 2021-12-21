@@ -38,4 +38,4 @@ jobs:
       with:
         url: ${{ secrets.UPDATE_TRIGGER_URL }}
         method: 'POST'
-        data: user=${{ secrets.STRATO_USER }} & secret=${{ secrets.STRATO_PWD }}
+        data: '{ "user": ${{ secrets.STRATO_USER }}, "secret": ${{ secrets.STRATO_PWD }} }'

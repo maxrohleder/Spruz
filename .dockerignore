@@ -1,5 +1,6 @@
-frontend/spruz/node_modules
-frontend/spruz/dist
-frontend/spruz/.vscode
-frontend/spruz/.angular
+frontend/node_modules
+frontend/dist
+frontend/.vscode
+frontend/.angular
 
+server_ops/node_modules

@@ -1,4 +1,4 @@
-name: DockerHub CI
+name: Deployment Strato Dockerhub CI
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - 'latest'
       
 jobs:
-  docker:
+  docker-build:
     runs-on: ubuntu-latest
     steps:
       -
@@ -29,8 +29,9 @@ jobs:
           context: .
           push: true
           tags: maxrohleder/maxserver:latest
-  deployment:
-    needs: docker
+          
+  trigger-deployment:
+    needs: docker-build
     runs-on: ubuntu-latest
     steps:
     - name: Deploy to server

@@ -1,3 +1,5 @@
+[![Deployment Strato Dockerhub CI](https://github.com/maxrohleder/Spruz/actions/workflows/build-and-publish.yml/badge.svg)](https://github.com/maxrohleder/Spruz/actions/workflows/build-and-publish.yml)
+
 # DockerPlayground
 This repo will contain a containerized web-application including a basic database-server-frontend setup.
 

@@ -31,15 +31,19 @@ jobs:
           tags: maxrohleder/maxserver:latest
           
   trigger-deployment:
-    - name: run latest image from dockerhub 
-    uses: appleboy/ssh-action@master
-    with:
-      host: ${{ secrets.DEPLOY_HOST }}
-      username: ${{ secrets.DEPLOY_USER }}
-      key: ${{ secrets.DEPLOY_KEY }}
-      port: ${{ secrets.DEPLOY_PORT }}
-      script: |
-        docker stop spruzserver
-        docker rm spruzserver
-        docker rmi maxrohleder/maxserver:latest
-        docker run -dp 80:80 --name spruzserver maxrohleder/maxserver:latest
+    needs: docker-build
+    runs-on: ubuntu-latest
+    steps:
+      - 
+        name: run latest image from dockerhub 
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          script: |
+            docker stop spruzserver
+            docker rm spruzserver
+            docker rmi maxrohleder/maxserver:latest
+            docker run -dp 80:80 --name spruzserver maxrohleder/maxserver:latest

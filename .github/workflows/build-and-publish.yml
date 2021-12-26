@@ -1,4 +1,4 @@
-name: DockerHub CI
+name: Deployment Strato Dockerhub CI
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - 'latest'
       
 jobs:
-  docker:
+  docker-build:
     runs-on: ubuntu-latest
     steps:
       -
@@ -29,14 +29,21 @@ jobs:
           context: .
           push: true
           tags: maxrohleder/maxserver:latest
-  deployment:
-    needs: docker
+          
+  trigger-deployment:
+    needs: docker-build
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy to server
-      uses: fjogeleit/http-request-action@master
-      with:
-        url: ${{ secrets.UPDATE_TRIGGER_URL }}
-        method: 'POST'
-        username: ${{ secrets.STRATO_USER }}
-        password: ${{ secrets.STRATO_PWD }}
+      - 
+        name: run latest image from dockerhub 
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.DEPLOY_HOST }}
+          username: ${{ secrets.DEPLOY_USER }}
+          key: ${{ secrets.DEPLOY_KEY }}
+          port: ${{ secrets.DEPLOY_PORT }}
+          script: |
+            docker stop spruzserver
+            docker rm spruzserver
+            docker rmi maxrohleder/maxserver:latest
+            docker run -dp 80:80 --name spruzserver maxrohleder/maxserver:latest
